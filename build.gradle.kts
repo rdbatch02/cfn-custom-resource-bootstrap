@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.3.72"
     kotlin("plugin.serialization") version "1.3.72"
+    `maven-publish`
 }
 repositories {
     mavenCentral()
@@ -32,5 +33,26 @@ tasks {
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "11"
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.batchofcode"
+            artifactId = rootProject.name
+            version = System.getenv("RELEASE_VERSION")
+        }
+    }
+    repositories {
+
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/rdbatch02/cfn-custom-resource-bootstrap")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }

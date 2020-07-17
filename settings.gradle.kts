@@ -1,2 +1,2 @@
-rootProject.name = "cfn-custom-resource-boostrap"
+rootProject.name = "cfn-custom-resource-bootstrap"
 
