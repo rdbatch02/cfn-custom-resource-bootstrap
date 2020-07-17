@@ -48,7 +48,7 @@ publishing {
 
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/rdbatch02")
+            url = uri("https://maven.pkg.github.com/rdbatch02/cfn-custom-resource-bootstrap")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
