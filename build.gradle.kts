@@ -9,7 +9,6 @@ repositories {
 }
 
 group = "com.batchofcode"
-version = System.getenv("RELEASE_VERSION") ?: "1.0-SNAPSHOT"
 
 val ktor_version = "1.3.2"
 val coroutines_verson = "1.3.5"
