@@ -35,11 +35,25 @@ tasks {
     }
 }
 
+tasks.withType<Jar>() {
+
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
+}
+
+val sourcesJar by tasks.creating(Jar::class) {
+    archiveClassifier.set("sources")
+    from(sourceSets.getByName("main").allSource)
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
             artifactId = rootProject.name
-            version = System.getenv("RELEASE_VERSION")
+            version = project.version.toString()
+            from(components["java"])
+            artifact(sourcesJar)
         }
     }
     repositories {
