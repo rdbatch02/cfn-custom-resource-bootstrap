@@ -18,9 +18,9 @@ val mockk_version = "1.10.0"
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("io.ktor:ktor-client-apache:$ktor_version")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_verson")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version")
+    api("io.ktor:ktor-client-apache:$ktor_version")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_verson")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version")
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
