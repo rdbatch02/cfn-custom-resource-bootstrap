@@ -1,5 +1,6 @@
 package com.batchofcode.cfn
 
+import com.amazonaws.services.lambda.runtime.Context
 import com.batchofcode.cfn.exception.InvalidCustomResourceException
 import com.batchofcode.cfn.responder.HttpCfnResponder
 import com.batchofcode.cfn.payload.CfnRequest
@@ -17,7 +18,7 @@ class CustomResourceHandler(
     private val environment: Map<String, String> = System.getenv(),
     private val responder: CfnResponder = HttpCfnResponder()
 ) {
-    fun handle(request: JsonObject, context: JsonObject) {
+    fun handle(request: JsonObject, context: Context?) {
         val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
 
         val parsedRequest = json.fromJson(CfnRequest.serializer(), request)
@@ -33,7 +34,7 @@ class CustomResourceHandler(
         }
     }
 
-    private fun invokeCustomResource(parsedRequest: CfnRequest, handler: CustomResource, context: JsonObject): Response {
+    private fun invokeCustomResource(parsedRequest: CfnRequest, handler: CustomResource, context: Context?): Response {
         return when (parsedRequest.RequestType) {
             RequestType.Create -> handler.onCreate(parsedRequest, context)
             RequestType.Update -> handler.onUpdate(parsedRequest, context)
