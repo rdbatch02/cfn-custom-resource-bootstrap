@@ -17,7 +17,7 @@ val serialization_version = "0.20.0"
 val mockk_version = "1.10.0"
 
 dependencies {
-    implementation(kotlin("stdlib"))
+    compileOnly(kotlin("stdlib"))
     implementation("io.ktor:ktor-client-apache:$ktor_version")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_verson")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version")
