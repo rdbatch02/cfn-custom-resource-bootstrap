@@ -16,7 +16,8 @@ jobs:
         with:
           java-version: 11
       - name: Publish package
-        run: gradle publish
+        run: gradle build bintrayUpload bintrayPublish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
           RELEASE_VERSION: ${{ github.event.release.tag_name }}

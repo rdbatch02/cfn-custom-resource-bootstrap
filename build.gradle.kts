@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "1.3.72"
     kotlin("plugin.serialization") version "1.3.72"
     `maven-publish`
+    id("com.jfrog.bintray") version "1.8.4"
 }
 repositories {
     mavenCentral()
@@ -36,22 +37,25 @@ tasks {
     }
 }
 
+bintray {
+    user = System.getenv("BINTRAY_USER")
+    key = System.getenv("BINTRAY_KEY")
+    publish = true
+    setPublications("maven")
+    pkg(closureOf<com.jfrog.bintray.gradle.BintrayExtension.PackageConfig> {
+        repo = "com.batchofcode"
+        name = "cfn-custom-resource-bootstrap"
+        setLicenses("MIT")
+        vcsUrl = "https://github.com/rdbatch02/cfn-custom-resource-bootstrap"
+        setVersion(System.getenv("RELEASE_VERSION"))
+    })
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
             artifactId = rootProject.name
             version = System.getenv("RELEASE_VERSION")
-        }
-    }
-    repositories {
-
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/rdbatch02/cfn-custom-resource-bootstrap")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
         }
     }
 }
