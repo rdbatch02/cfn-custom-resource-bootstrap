@@ -17,7 +17,7 @@ val serialization_version = "0.20.0"
 val mockk_version = "1.10.0"
 
 dependencies {
-    compileOnly(kotlin("stdlib"))
+    implementation(kotlin("stdlib"))
     implementation("io.ktor:ktor-client-apache:$ktor_version")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_verson")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version")
@@ -49,18 +49,6 @@ bintray {
         setVersion(System.getenv("RELEASE_VERSION"))
     })
 }
-
-tasks.withType<Jar>() {
-
-    configurations["compileClasspath"].forEach { file: File ->
-        from(zipTree(file.absoluteFile))
-    }
-}
-
-//val sourcesJar by tasks.creating(Jar::class) {
-//    archiveClassifier.set("sources")
-//    from(sourceSets.getByName("main").allSource)
-//}
 
 publishing {
     publications {
