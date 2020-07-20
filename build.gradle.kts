@@ -18,7 +18,7 @@ val mockk_version = "1.10.0"
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("com.amazonaws:aws-lambda-java-core:1.2.0")
+    api("com.amazonaws:aws-lambda-java-core:1.2.0")
     api("io.ktor:ktor-client-apache:$ktor_version")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_verson")
     api("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version")
