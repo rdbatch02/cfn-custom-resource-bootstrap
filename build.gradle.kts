@@ -50,12 +50,18 @@ bintray {
     })
 }
 
+val sourcesJar by tasks.creating(Jar::class) {
+    archiveClassifier.set("sources")
+    from(sourceSets.getByName("main").allSource)
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
             artifactId = rootProject.name
             version = project.version.toString()
             from(components["java"])
+            artifact(sourcesJar)
         }
     }
 }
