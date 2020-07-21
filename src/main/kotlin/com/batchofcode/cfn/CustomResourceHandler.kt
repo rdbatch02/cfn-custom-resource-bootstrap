@@ -18,10 +18,10 @@ class CustomResourceHandler(
     private val environment: Map<String, String> = System.getenv(),
     private val responder: CfnResponder = HttpCfnResponder()
 ) {
-    fun handle(request: JsonObject, context: Context?) {
+    fun handle(request: String, context: Context?) {
         val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
+        val parsedRequest = json.parse(CfnRequest.serializer(), request)
 
-        val parsedRequest = json.fromJson(CfnRequest.serializer(), request)
         try {
             val handler: CustomResource = CustomResourceLoader.load(environment[HANDLER_CLASS_KEY].toString())
             val response = invokeCustomResource(parsedRequest, handler, context)
