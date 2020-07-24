@@ -4,7 +4,7 @@ import com.batchofcode.cfn.json.toJsonObject
 
 data class Response (
     val Status: ResponseStatus,
-    val Reason: String? = null,
+    val Reason: String = "",
     val NoEcho: Boolean = false,
     val Data: Map<String, Any>? = null
 ) {

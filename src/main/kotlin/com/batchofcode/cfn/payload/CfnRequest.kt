@@ -2,7 +2,6 @@ package com.batchofcode.cfn.payload
 
 import com.batchofcode.cfn.payload.RequestType.Create
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonObject
 
 @Serializable
 data class CfnRequest (
@@ -13,8 +12,8 @@ data class CfnRequest (
     val ResourceType: String = "",
     val LogicalResourceId: String = "",
     val PhysicalResourceId: String = "",
-    val ResourceProperties: JsonObject = JsonObject(emptyMap()),
-    val OldResourceProperties: JsonObject? = null
+    val ResourceProperties: Map<String, String> = emptyMap(),
+    val OldResourceProperties: Map<String, String>? = null
 )
 
 enum class RequestType {

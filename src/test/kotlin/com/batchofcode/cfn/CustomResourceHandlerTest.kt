@@ -6,7 +6,6 @@ import com.batchofcode.cfn.payload.Response
 import com.batchofcode.cfn.payload.ResponseStatus
 import com.batchofcode.cfn.responder.CfnResponder
 import io.mockk.*
-import kotlinx.serialization.json.JsonObject
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -37,12 +36,12 @@ class CustomResourceHandlerTest {
             ResourceType = "TEST",
             LogicalResourceId = "TEST",
             PhysicalResourceId = "TEST",
-            ResourceProperties = JsonObject(mapOf()),
+            ResourceProperties = emptyMap(),
             OldResourceProperties = null
         )
         val responseObject = Response(
             Status = ResponseStatus.SUCCESS,
-            Reason = null,
+            Reason = "",
             NoEcho = false,
             Data = mapOf()
         )
@@ -65,12 +64,12 @@ class CustomResourceHandlerTest {
             ResourceType = "TEST",
             LogicalResourceId = "TEST",
             PhysicalResourceId = "TEST",
-            ResourceProperties = JsonObject(mapOf()),
+            ResourceProperties = emptyMap(),
             OldResourceProperties = null
         )
         val responseObject = Response(
             Status = ResponseStatus.SUCCESS,
-            Reason = null,
+            Reason = "",
             NoEcho = false,
             Data = mapOf()
         )
@@ -93,12 +92,12 @@ class CustomResourceHandlerTest {
             ResourceType = "TEST",
             LogicalResourceId = "TEST",
             PhysicalResourceId = "TEST",
-            ResourceProperties = JsonObject(mapOf()),
+            ResourceProperties = emptyMap(),
             OldResourceProperties = null
         )
         val responseObject = Response(
             Status = ResponseStatus.SUCCESS,
-            Reason = null,
+            Reason = "",
             NoEcho = false,
             Data = mapOf()
         )
@@ -120,12 +119,12 @@ class CustomResourceHandlerTest {
             ResourceType = "TEST",
             LogicalResourceId = "TEST",
             PhysicalResourceId = "TEST",
-            ResourceProperties = JsonObject(mapOf()),
+            ResourceProperties = emptyMap(),
             OldResourceProperties = null
         )
         val responseObject = Response(
             Status = ResponseStatus.FAILED,
-            Reason = null,
+            Reason = "",
             NoEcho = false,
             Data = mapOf()
         )
@@ -147,12 +146,12 @@ class CustomResourceHandlerTest {
             ResourceType = "TEST",
             LogicalResourceId = "TEST",
             PhysicalResourceId = "TEST",
-            ResourceProperties = JsonObject(mapOf()),
+            ResourceProperties = emptyMap(),
             OldResourceProperties = null
         )
         val responseObject = Response(
             Status = ResponseStatus.FAILED,
-            Reason = null,
+            Reason = "",
             NoEcho = false,
             Data = mapOf()
         )
@@ -175,12 +174,12 @@ class CustomResourceHandlerTest {
             ResourceType = "TEST",
             LogicalResourceId = "TEST",
             PhysicalResourceId = "TEST",
-            ResourceProperties = JsonObject(mapOf()),
+            ResourceProperties = emptyMap(),
             OldResourceProperties = null
         )
         val responseObject = Response(
             Status = ResponseStatus.FAILED,
-            Reason = null,
+            Reason = "",
             NoEcho = false,
             Data = mapOf()
         )
