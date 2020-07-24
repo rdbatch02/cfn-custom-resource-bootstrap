@@ -4,9 +4,12 @@ import com.batchofcode.cfn.exception.InvalidCustomResourceException
 
 object CustomResourceLoader {
     fun load(customResourceClassName: String): CustomResource {
-        return when (val handlerInstance = javaClass.classLoader.loadClass(customResourceClassName)) {
-            is CustomResource -> handlerInstance
-            else -> throw InvalidCustomResourceException("$customResourceClassName must implement CustomResource interface!")
+        val loadedHandler = javaClass.classLoader.loadClass(customResourceClassName)
+        if (loadedHandler.interfaces.any { it.name == CustomResource::class.qualifiedName }) {
+            return loadedHandler.getDeclaredConstructor().newInstance() as CustomResource
+        }
+        else {
+            throw InvalidCustomResourceException("$customResourceClassName must implement CustomResource interface!")
         }
     }
 }

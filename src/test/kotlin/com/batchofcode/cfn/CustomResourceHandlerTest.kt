@@ -1,6 +1,9 @@
 package com.batchofcode.cfn
 
-import com.batchofcode.cfn.payload.*
+import com.batchofcode.cfn.payload.CfnRequest
+import com.batchofcode.cfn.payload.RequestType
+import com.batchofcode.cfn.payload.Response
+import com.batchofcode.cfn.payload.ResponseStatus
 import com.batchofcode.cfn.responder.CfnResponder
 import io.mockk.*
 import kotlinx.serialization.json.Json
@@ -46,11 +49,10 @@ class CustomResourceHandlerTest {
             NoEcho = false,
             Data = mapOf()
         )
-        val requestJson = json.stringify(CfnRequest.serializer(), requestObject)
 
         every { mockResource.onCreate(any(), any()) } returns responseObject
 
-        handler.handle(requestJson, null)
+        handler.handle(requestObject, null)
         verify { mockResource.onCreate(requestObject, null) }
         verify { mockResponder.sendResponse(requestObject.ResponseURL, responseObject.toCfnResponse(requestObject)) }
     }
@@ -76,10 +78,9 @@ class CustomResourceHandlerTest {
             NoEcho = false,
             Data = mapOf()
         )
-        val requestJson = json.stringify(CfnRequest.serializer(), requestObject)
         every { mockResource.onUpdate(any(), any()) } returns responseObject
 
-        handler.handle(requestJson, null)
+        handler.handle(requestObject, null)
         verify { mockResource.onUpdate(requestObject, null) }
         val response = responseObject.toCfnResponse(requestObject)
         verify { mockResponder.sendResponse(requestObject.ResponseURL, response) }
@@ -106,10 +107,9 @@ class CustomResourceHandlerTest {
             NoEcho = false,
             Data = mapOf()
         )
-        val requestJson = json.stringify(CfnRequest.serializer(), requestObject)
         every { mockResource.onDelete(any(), any()) } returns responseObject
 
-        handler.handle(requestJson, null)
+        handler.handle(requestObject, null)
         verify { mockResource.onDelete(requestObject, null) }
         verify { mockResponder.sendResponse(requestObject.ResponseURL, responseObject.toCfnResponse(requestObject)) }
     }
@@ -135,10 +135,9 @@ class CustomResourceHandlerTest {
             NoEcho = false,
             Data = mapOf()
         )
-        val requestJson = json.stringify(CfnRequest.serializer(), requestObject)
         every { mockResource.onCreate(any(), any()) } throws Exception()
 
-        handler.handle(requestJson, null)
+        handler.handle(requestObject, null)
         verify { mockResource.onCreate(requestObject, null) }
         verify { mockResponder.sendResponse(requestObject.ResponseURL, responseObject.toCfnResponse(requestObject)) }
     }
@@ -164,10 +163,9 @@ class CustomResourceHandlerTest {
             NoEcho = false,
             Data = mapOf()
         )
-        val requestJson = json.stringify(CfnRequest.serializer(), requestObject)
         every { mockResource.onUpdate(any(), any()) } throws Exception()
 
-        handler.handle(requestJson, null)
+        handler.handle(requestObject, null)
         verify { mockResource.onUpdate(requestObject, null) }
         verify { mockResponder.sendResponse(requestObject.ResponseURL, responseObject.toCfnResponse(requestObject)) }
     }
@@ -194,10 +192,9 @@ class CustomResourceHandlerTest {
             NoEcho = false,
             Data = mapOf()
         )
-        val requestJson = json.stringify(CfnRequest.serializer(), requestObject)
         every { mockResource.onDelete(any(), any()) } throws Exception()
 
-        handler.handle(requestJson, null)
+        handler.handle(requestObject, null)
         verify { mockResource.onDelete(requestObject, null) }
         verify { mockResponder.sendResponse(requestObject.ResponseURL, responseObject.toCfnResponse(requestObject)) }
     }
