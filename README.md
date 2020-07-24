@@ -49,4 +49,4 @@ class MyCustomResource: CustomResource {
 }
 ```
 
-Deploy a lambda with the handler specified as `com.batchofcode.cfn.CustomResourceHandler::handle`, then set the environment variable `CUSTOM_RESOURCE_HANDLER` to reference your handler class: `"CUSTOM_RESOURCE_HANDLER_CLASS": "com.package.MyCustomResource"`.
+Deploy a lambda with the handler specified as `com.batchofcode.cfn.CustomResourceHandler::handleRequest`, then set the environment variable `CUSTOM_RESOURCE_HANDLER` to reference your handler class: `"CUSTOM_RESOURCE_HANDLER_CLASS": "com.package.MyCustomResource"`.
