@@ -6,8 +6,6 @@ import com.batchofcode.cfn.payload.Response
 import com.batchofcode.cfn.payload.ResponseStatus
 import com.batchofcode.cfn.responder.CfnResponder
 import io.mockk.*
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.json.JsonObject
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -30,7 +28,6 @@ class CustomResourceHandlerTest {
 
     @Test
     fun `should handle CREATE request`() {
-        val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
         val handler = CustomResourceHandler(mapOf(), mockResponder)
         val requestObject = CfnRequest(
             RequestType = RequestType.Create,
@@ -59,7 +56,6 @@ class CustomResourceHandlerTest {
 
     @Test
     fun `should handle UPDATE request`() {
-        val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
         val handler = CustomResourceHandler(mapOf(), mockResponder)
         val requestObject = CfnRequest(
             RequestType = RequestType.Update,
@@ -88,7 +84,6 @@ class CustomResourceHandlerTest {
 
     @Test
     fun `should handle DELETE request`() {
-        val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
         val handler = CustomResourceHandler(mapOf(), mockResponder)
         val requestObject = CfnRequest(
             RequestType = RequestType.Delete,
@@ -116,7 +111,6 @@ class CustomResourceHandlerTest {
 
     @Test(expected = Exception::class)
     fun `should send an error response and throw exception when processing CREATE fails`() {
-        val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
         val handler = CustomResourceHandler(mapOf(), mockResponder)
         val requestObject = CfnRequest(
             RequestType = RequestType.Create,
@@ -144,7 +138,6 @@ class CustomResourceHandlerTest {
 
     @Test(expected = Exception::class)
     fun `should send an error response and throw exception when processing UPDATE fails`() {
-        val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
         val handler = CustomResourceHandler(mapOf(), mockResponder)
         val requestObject = CfnRequest(
             RequestType = RequestType.Update,
@@ -173,7 +166,6 @@ class CustomResourceHandlerTest {
 
     @Test(expected = Exception::class)
     fun `should send an error response and throw exception when processing DELETE fails`() {
-        val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
         val handler = CustomResourceHandler(mapOf(), mockResponder)
         val requestObject = CfnRequest(
             RequestType = RequestType.Delete,
