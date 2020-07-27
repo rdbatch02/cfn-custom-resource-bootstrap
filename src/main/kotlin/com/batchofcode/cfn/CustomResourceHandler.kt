@@ -23,7 +23,10 @@ class CustomResourceHandler(
 
     override fun handleRequest(input: InputStream, output: OutputStream, context: Context?) {
         val inputString = String(input.readBytes())
-        val json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
+        val json = Json(JsonConfiguration.Stable.copy(
+                ignoreUnknownKeys = true,
+                isLenient = true
+        ))
         val request = json.parse(CfnRequest.serializer(), inputString).let {
             if (it.PhysicalResourceId.isEmpty()) {
                 return@let it.copy(PhysicalResourceId = context!!.logStreamName)
