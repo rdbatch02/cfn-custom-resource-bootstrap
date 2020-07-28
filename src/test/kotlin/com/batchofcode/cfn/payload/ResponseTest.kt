@@ -1,6 +1,7 @@
 package com.batchofcode.cfn.payload
 
 import com.batchofcode.cfn.json.toJsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -22,7 +23,7 @@ class ResponseTest {
             ResourceType = "CustomResource",
             LogicalResourceId = "123",
             PhysicalResourceId = "123",
-            ResourceProperties = mapOf("key" to "value"),
+            ResourceProperties = mapOf("key" to JsonPrimitive("value")),
             OldResourceProperties = null
         )
         val response = Response(
