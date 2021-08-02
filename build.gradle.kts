@@ -1,26 +1,25 @@
 plugins {
-    kotlin("jvm") version "1.3.72"
-    kotlin("plugin.serialization") version "1.3.72"
+    kotlin("jvm") version "1.5.20"
+    kotlin("plugin.serialization") version "1.5.20"
     `maven-publish`
 }
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 group = "com.batchofcode"
 
-val ktor_version = "1.3.2"
-val coroutines_verson = "1.3.5"
-val serialization_version = "0.20.0"
-val mockk_version = "1.10.0"
+val ktor_version = "1.6.0"
+val coroutines_verson = "1.5.0"
+val serialization_version = "1.2.2"
+val mockk_version = "1.12.0"
 
 dependencies {
     implementation(kotlin("stdlib"))
-    api("com.amazonaws:aws-lambda-java-core:1.2.0")
+    api("com.amazonaws:aws-lambda-java-core:1.2.1")
     api("io.ktor:ktor-client-apache:$ktor_version")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_verson")
-    api("org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))

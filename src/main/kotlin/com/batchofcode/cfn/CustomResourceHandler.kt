@@ -9,7 +9,6 @@ import com.batchofcode.cfn.responder.CfnResponder
 import com.batchofcode.cfn.responder.HttpCfnResponder
 import com.batchofcode.cfn.responder.OfflineCfnResponder
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import java.io.InputStream
 import java.io.OutputStream
 
@@ -23,11 +22,11 @@ class CustomResourceHandler(
 
     override fun handleRequest(input: InputStream, output: OutputStream, context: Context?) {
         val inputString = String(input.readBytes())
-        val json = Json(JsonConfiguration.Stable.copy(
-                ignoreUnknownKeys = true,
+        val json = Json {
+                ignoreUnknownKeys = true
                 isLenient = true
-        ))
-        val request = json.parse(CfnRequest.serializer(), inputString).let {
+            }
+        val request = json.decodeFromString(CfnRequest.serializer(), inputString).let {
             if (it.PhysicalResourceId.isEmpty()) {
                 return@let it.copy(PhysicalResourceId = context!!.logStreamName)
             }
