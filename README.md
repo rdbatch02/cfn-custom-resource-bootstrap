@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
   // ...
-  implementation("ccom.github.rdbatch02:cfn-custom-resource-bootstrap:${version}")
+  implementation("com.github.rdbatch02:cfn-custom-resource-bootstrap:${version}")
 }
 ```
 
