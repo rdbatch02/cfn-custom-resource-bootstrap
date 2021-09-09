@@ -1,7 +1,7 @@
-# cfn-custom-resource-bootstrap ![Build](https://github.com/rdbatch02/cfn-custom-resource-bootstrap/workflows/Build/badge.svg)[ ![Download](https://api.bintray.com/packages/c1phr/com.batchofcode/cfn-custom-resource-bootstrap/images/download.svg) ](https://bintray.com/c1phr/com.batchofcode/cfn-custom-resource-bootstrap/_latestVersion)
+# cfn-custom-resource-bootstrap ![Build](https://github.com/rdbatch02/cfn-custom-resource-bootstrap/workflows/Build/badge.svg)
 Bootstrapping library for creating Cloudformation Custom Resources
 
-This library is distributed through Bintray: [https://bintray.com/c1phr/com.batchofcode/cfn-custom-resource-bootstrap](https://bintray.com/c1phr/com.batchofcode/cfn-custom-resource-bootstrap)
+This library is distributed through Jitpack only for now (formerly Bintray): [https://jitpack.io/#rdbatch02/cfn-custom-resource-bootstrap](https://jitpack.io/#rdbatch02/cfn-custom-resource-bootstrap)
 
 ## Usage
 
@@ -10,12 +10,12 @@ Import the library into a Gradle Project:
 ```kotlin
 repositories {
     //...
-    maven { url = uri("https://dl.bintray.com/c1phr/com.batchofcode") }
+    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
   // ...
-  implementation("com.batchofcode:cfn-custom-resource-bootstrap:${version}")
+  implementation("ccom.github.rdbatch02:cfn-custom-resource-bootstrap:${version}")
 }
 ```
 
